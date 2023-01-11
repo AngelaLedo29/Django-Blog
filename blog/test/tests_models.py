@@ -8,10 +8,10 @@ class PostModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        u = User.objects.create(first_name='Angela', last_name='Malfoy')
+        u = User.objects.create(first_name='Angela', last_name='Bob')
         p = Post.objects.create(title='My first post', slug='my-first-post', author=u, content='This is my first post content', status=2)
 
-    def test_object_name_is_last_name_comma_first_name(self):
+    def test_method_str(self):
         '''
         Comprobar que el print del objeto devuelve el título
         '''
