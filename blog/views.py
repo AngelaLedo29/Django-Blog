@@ -11,15 +11,14 @@ class PostList(generic.ListView):
     template_name = "index.html"
     paginate_by = 3
 
-class PostListUser(LoginRequiredMixin, generic.ListView):
-    ''' Vista para mostrar los posts de un usuario'''
+class UserPostList(LoginRequiredMixin, generic.ListView):
+    '''Muestra los posts de un usuario en particular'''
+    model = Post
+    template_name = "user_posts.html"
+    paginate_by = 10
+
     def get_queryset(self):
-        user = self.request.user
-        return Post.objects.filter(author=user).order_by("-created_on")
-
-    template_name = "listado_usuario.html"
-    paginate_by = 3
-
+        return Post.objects.filter(author=self.request.user).order_by("-created_on")
 
 # class PostDetail(generic.DetailView):
 #     model = Post
